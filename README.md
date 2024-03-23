@@ -1,24 +1,53 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
 
-Things you may want to cover:
+## usersテーブル
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| kanji_name         | text   | null: false               |
+| katakana_name      | text   | null: false               |
 
-* Ruby version
+- has_many: items
+- has_many: comments
+- has_one: order
 
-* System dependencies
+## itemsテーブル
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| price       | integer    | null: false                    |
+| item_name   | text       | null: false                    |
+| description | text       | null: false                    |
+| user        | references | null: false, foreign_key: true |
 
-* Configuration
+- belongs_to: user
+- has_many: comments
+- has_one: order
 
-* Database creation
+## commentsテーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | text       | null: false                    |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
 
-* Database initialization
+- belongs_to: user
+- belongs_to: item
 
-* How to run the test suite
+## ordersテーブル
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| total_paid     | integer    | null: false                    |
+| postal_code    | string     | null: false                    |
+| city           | string     | null: false                    |
+| street_address | string     | null: false                    |
+| building       | string     | null: false                    |
+| phone_number   | string     | null: false                    |
+| user           | references | null: false, foreign_key: true |
+| item           | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- belongs_to: user
+- belongs_to: item
