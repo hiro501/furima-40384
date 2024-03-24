@@ -8,23 +8,22 @@
 | name                | string | null: false               |
 | email               | string | null: false, unique: true |
 | encrypted_password  | string | null: false               |
-| kanji_last_name     | text   | null: false               |
-| kanji_first_name    | text   | null: false               |
-| katakana_last_name  | text   | null: false               |
-| katakana_first_name | text   | null: false               |
-| birth_year          | date   | null: false               |
-| birth_month         | date   | null: false               |
-| birth_day           | date   | null: false               |
+| kanji_last_name     | string | null: false               |
+| kanji_first_name    | string | null: false               |
+| katakana_last_name  | string | null: false               |
+| katakana_first_name | string | null: false               |
+| birthdate           | date   | null: false               |
 
 - has_many: items
 - has_many: comments
-- has_one: order
+- has_many: orders
 
 ## itemsテーブル
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
+| image       | text       | nill: false                    |
 | price       | integer    | null: false                    |
-| item_name   | string       | null: false                    |
+| item_name   | string     | null: false                    |
 | description | text       | null: false                    |
 | user        | references | null: false, foreign_key: true |
 
@@ -45,7 +44,6 @@
 ## ordersテーブル
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| total_paid     | integer    | null: false                    |
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
 
@@ -60,7 +58,7 @@
 | prefecture     | string     | null: false                    |
 | city           | string     | null: false                    |
 | street_address | string     | null: false                    |
-| building       | string     | null: false                    |
+| building       | string     |                                |
 | phone_number   | string     | null: false                    |
 | order          | references | null: false, foreign_key: true |
 
