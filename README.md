@@ -19,12 +19,17 @@
 - has_many: orders
 
 ## itemsテーブル
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| image       | text       | nill: false                    |
-| price       | integer    | null: false                    |
-| item_name   | string     | null: false                    |
-| description | text       | null: false                    |
+| Column           | Type    | Options     |
+| ---------------- | ------- | ----------- |
+| price            | integer | null: false |
+| item_name        | string  | null: false |
+| description      | text    | null: false |
+| category_id      | integer | null: false |
+| condition_id     | integer | null: false |
+| shipping_fee_id  | integer | null: false |
+| shipping_from_id | integer | null: false |
+| shipping-day_id  | integer | null: false |
+
 | user        | references | null: false, foreign_key: true |
 
 - belongs_to: user
@@ -42,10 +47,11 @@
 - belongs_to: item
 
 ## ordersテーブル
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| user           | references | null: false, foreign_key: true |
-| item           | references | null: false, foreign_key: true |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| user    | references | null: false, foreign_key: true |
+| item    | references | null: false, foreign_key: true |
+| address | references | null: false, foreign_key: true |
 
 - belongs_to: user
 - belongs_to: item
@@ -55,7 +61,7 @@
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
 | postal_code    | string     | null: false                    |
-| prefecture     | string     | null: false                    |
+| prefecture_id  | integer    | null: false                    |
 | city           | string     | null: false                    |
 | street_address | string     | null: false                    |
 | building       | string     |                                |
