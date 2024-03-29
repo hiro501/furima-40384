@@ -10,6 +10,6 @@ class User < ApplicationRecord
   validates :katakana_last_name, presence: true, format: { with: /\A[\p{Katakana}ー－]+\z/ }
   validates :katakana_first_name, presence: true, format: { with: /\A[\p{Katakana}ー－]+\z/ }
   validates :birth_date, presence: true
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }
+  validates :password, format: { with: VALID_PASSWORD_REGEX }
 
 end
