@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 販売手数料を計算（10%と仮定）
     const tax = Math.floor(price * 0.1);
     // 販売利益を計算
-    const earnings = price - tax;
+    const earnings = Math.floor(price - tax);
 
     // 計算結果を表示
     addTaxPrice.textContent = tax.toLocaleString(); // 販売手数料を表示（カンマ区切り）
