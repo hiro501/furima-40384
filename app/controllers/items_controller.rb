@@ -1,9 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :contributor_confirmation, only: [:edit, :update, :destroy]
-  before_action :login_required, only: [:destroy]
-
 
 
   def index
@@ -53,9 +51,5 @@ class ItemsController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path unless current_user == @item.user
-  end
-
-  def login_required
-    redirect_to new_user_session_path unless user_signed_in?
   end
 end
