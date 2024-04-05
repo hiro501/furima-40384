@@ -2,6 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+has_many :items
+has_many :orders
+
   VALID_PASSWORD_REGEX = /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/
 
   with_options presence: true do
@@ -13,7 +16,5 @@ class User < ApplicationRecord
     validates :birth_date
   end
   validates :password, format: { with: VALID_PASSWORD_REGEX }
-
-  has_many :items
 
 end
