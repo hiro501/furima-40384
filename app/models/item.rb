@@ -20,4 +20,5 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
   validates :image, presence: true
+  
 end
