@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_one :order
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -19,4 +20,5 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
   validates :shipping_day_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
   validates :image, presence: true
+  
 end

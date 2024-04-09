@@ -14,7 +14,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
+    if @item.valid?
+      @item.save
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user_id != current_user.id || @item.order != nil
+      redirect_to root_path
+    end
   end
 
   def update
@@ -52,4 +56,5 @@ class ItemsController < ApplicationController
   def contributor_confirmation
     redirect_to root_path unless current_user == @item.user
   end
+
 end
