@@ -62,7 +62,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
-      it 'userが紐付いていないと登録できない' do
+      it 'userが紐付いていないと登録できないこと' do
         @order_address.user_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("User can't be blank")
@@ -71,6 +71,16 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it "prefecture_idが1では登録できないこと" do
+        @order_address.prefecture_id = '1'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'itemが紐付いていないと登録できないこと' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
