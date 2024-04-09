@@ -2,16 +2,16 @@ class OrderAddress
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :street_address, :building, :phone_number, :user_id, :item_id, :token
 
-
-  validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }
-  validates :prefecture_id, presence: true, numericality: { other_than: 1, message: "can't be blank"}
-  validates :city, presence: true
-  validates :street_address, presence: true
-  validates :phone_number, presence: true, numericality: { only_integer: true }, length: { minimum: 10, maximum: 11 }
-  validates :user_id, presence: true
-  validates :item_id, presence: true
-  validates :token, presence: true
-
+  with_options presence: true do
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }
+    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank"}
+    validates :city
+    validates :street_address
+    validates :phone_number, numericality: { only_integer: true }, length: { minimum: 10, maximum: 11 }
+    validates :user_id
+    validates :item_id
+    validates :token
+  end
 
   def save
     @order = Order.create(user_id: user_id, item_id: item_id)
